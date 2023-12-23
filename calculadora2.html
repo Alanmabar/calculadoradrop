@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de Margem de Lucro</title>
+  <style>
+    /* Estilos CSS para a calculadora */
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://scontent.fcgh6-1.fna.fbcdn.net/v/t39.30808-6/410913159_10232266280704784_1821952584646191381_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=3635dc&_nc_eui2=AeHGhj9UKhRZDnzMOVUoQWyzxSAHY-C69s3FIAdj4Lr2zfwJ77s1qE62txXFu9CoiT0&_nc_ohc=LzERtfzCGmEAX_PdxnM&_nc_ht=scontent.fcgh6-1.fna&oh=00_AfAFPOBcIkP7zvJcwAwPBNGAsiGeVuXTEXsbCj4xtJJHig&oe=658B738E');
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      flex: 1;
+      text-align: right;
+      margin-right: 10px;
+      color: #666;
+    }
+
+    .input-group input {
+      flex: 2;
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+
+    .btn-calcular {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      color: #fff;
+      background-color: #3498db;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-calcular:hover {
+      background-color: #2980b9;
+    }
+
+    .resultado {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin: 0 5px;
+      color: #666;
+      text-decoration: none;
+    }
+
+    .social-icons img {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Calculadora de Margem de Lucro</h1>
+    <div class="input-group">
+      <label for="custo-produto">Custo do Produto:</label>
+      <input type="number" id="custo-produto">
+    </div>
+    <div class="input-group">
+      <label for="frete">Frete:</label>
+      <input type="number" id="frete">
+    </div>
+    <div class="input-group">
+      <label for="custo-trafego">Custo de Tráfego:</label>
+      <input type="number" id="custo-trafego">
+    </div>
+    <div class="input-group">
+      <label for="multiplicador">Multiplicador:</label>
+      <input type="number" id="multiplicador" step="0.01" min="0" value="1.9">
+    </div>
+    <button class="btn-calcular" onclick="calcularMargemLucro()">Calcular Margem de Lucro</button>
+    <div class="resultado" id="resultado"></div>
+    <div class="social-icons">
+      <a href="https://grazioza.com.br" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1356/1356332.png" alt="Site"></a>
+      <a href="https://www.instagram.com/alanm.barros" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1936/1936319.png" alt="Instagram"></a>
+    </div>
+  </div>
+
+  <script>
+    // Função para calcular a margem de lucro e exibir o resultado
+    function calcularMargemLucro() {
+      var custoProduto = parseFloat(document.getElementById("custo-produto").value);
+      var frete = parseFloat(document.getElementById("frete").value);
+      var custoTrafego = parseFloat(document.getElementById("custo-trafego").value);
+      var multiplicador = parseFloat(document.getElementById("multiplicador").value);
+
+      var custoTotal = custoProduto + frete + custoTrafego;
+      var valorVenda = custoTotal * multiplicador;
+      var taxas = valorVenda * 0.065;
+      var margemLucro = valorVenda - taxas - custoTotal;
+
+      document.getElementById("resultado").innerHTML = "A margem de lucro é de R$ " + margemLucro.toFixed(2);
+    }
+  </script>
+</body>
+</html>
